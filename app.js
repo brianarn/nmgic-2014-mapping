@@ -1,7 +1,11 @@
 require([
   'esri/map',
+  'esri/layers/FeatureLayer',
   'dojo/domReady!'
-], function(Map) {
+], function(Map, FeatureLayer) {
+  // URL to our feature layer
+  var url = 'http://gis-web.heritage.unm.edu/arcgis/rest/services/DataMgmt/MinimumConvexPolygon/MapServer/0';
+
   // Create our base map
   var map = new Map('map', {
     basemap: 'topo',
@@ -10,8 +14,22 @@ require([
   });
 
   // When the map loads, we'll take some actions
-  function onMapLoaded () {
-    alert('Map is loaded!');
+  function onMapLoaded (e) {
+    console.log('Map loaded!');
+
+    // Define our feature layer
+    var featureLayer = new FeatureLayer(url, {
+      outFields: ['*']
+    });
+
+    // Set up a function to execute when the layer is loaded
+    function featureLayerLoaded (e) {
+      console.log('Feature layer loaded!');
+
+      map.addLayer(featureLayer);
+    }
+
+    featureLayer.on('load', featureLayerLoaded);
   }
 
   map.on('load', onMapLoaded);
