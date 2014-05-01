@@ -8,4 +8,11 @@ require([
     center: [-106.06, 34.26], // longitude, latitude
     zoom: 6
   });
+
+  // When the map loads, we'll take some actions
+  function onMapLoaded () {
+    alert('Map is loaded!');
+  }
+
+  map.on('load', onMapLoaded);
 });
