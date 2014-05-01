@@ -1,0 +1,11 @@
+/*
+ * By removing the margin and padding,
+ * and explicitly setting a height and width of 100%,
+ * we're effectively making the page a fullscreen map
+ */
+html, body, #map {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
