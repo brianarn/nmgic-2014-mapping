@@ -28,6 +28,9 @@ require([
     function featureLayerLoaded (e) {
       console.log('Feature layer loaded!');
 
+      // Let's add a definition expression
+      featureLayer.setDefinitionExpression('Shape_Area < 2000000000 AND Shape_Area > 1000000000');
+
       map.addLayer(featureLayer);
     }
 
