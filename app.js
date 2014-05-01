@@ -1,8 +1,9 @@
 require([
   'esri/map',
   'esri/layers/FeatureLayer',
+  'esri/InfoTemplate',
   'dojo/domReady!'
-], function(Map, FeatureLayer) {
+], function(Map, FeatureLayer, InfoTemplate) {
   // URL to our feature layer
   var url = 'http://gis-web.heritage.unm.edu/arcgis/rest/services/DataMgmt/MinimumConvexPolygon/MapServer/0';
 
@@ -19,7 +20,8 @@ require([
 
     // Define our feature layer
     var featureLayer = new FeatureLayer(url, {
-      outFields: ['*']
+      outFields: ['*'],
+      infoTemplate: new InfoTemplate('Scientific Name: ${ScientificName}', '${*}')
     });
 
     // Set up a function to execute when the layer is loaded
